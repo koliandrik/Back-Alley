@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Navbar = styled.nav`
@@ -12,12 +12,11 @@ const Navbar = styled.nav`
 
 const NavBar = () => (
   <Navbar>
-    <p>Back Alley</p>
-    {/* <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>Home</Link>
+    <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>Home</Link>
     <Link to="/organs" style={{ color: 'white', textDecoration: 'none' }}>Organs</Link>
     <Link to="/animals" style={{ color: 'white', textDecoration: 'none' }}>Animals</Link>
     <Link to="/cart" style={{ color: 'white', textDecoration: 'none' }}>Cart</Link>
-    <Link to="/checkout" style={{ color: 'white', textDecoration: 'none' }}>Checkout</Link> */}
+    <Link to="/checkout" style={{ color: 'white', textDecoration: 'none' }}>Checkout</Link>
   </Navbar>
 );
 
