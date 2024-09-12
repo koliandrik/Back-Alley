@@ -10,7 +10,12 @@ const Cart = ({ cart }) => (
         {cart.map((organ, index) => (
           <li key={index}>{organ.name} - {organ.price}</li>
         ))}
-      </ul>
+      </ul>,
+      <ul>
+      {cart.map((animal, index) => (
+        <li key={index}>{animal.name} - {animal.price}</li>
+      ))}
+    </ul>
     )}
   </div>
 );
