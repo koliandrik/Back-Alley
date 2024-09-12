@@ -1,28 +1,23 @@
-import React, { useState } from 'react';
-import OrganList from './components/OrganList';
-import Cart from './components/Cart';
-import './App.css';
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import OrganPage from './pages/OrganPage';
+import AnimalPage from './pages/AnimalPage';
+import CartPage from './pages/CartPage';
+import CheckoutPage from './pages/CheckoutPage';
+import NavBar from './components/NavBar';
 
 const App = () => {
-  const [cart, setCart] = useState([]);
-  const [isCartVisible, setIsCartVisible] = useState(true);
-
-  const handleAddToCart = (organ) => {
-    setCart(prevCart => [...prevCart, organ]);
-  };
-
-  const handleToggleCart = () => {
-    setIsCartVisible(!isCartVisible);
-  };
-
   return (
-    <div className="App">
-      <h1>Body Organs for Sale</h1>
-      <button onClick={handleToggleCart}>
-        {isCartVisible ? 'Hide Cart' : 'Show Cart'}
-      </button>
-      <OrganList onAddToCart={handleAddToCart} />
-      {isCartVisible && <Cart cart={cart} />}
+    <div>
+      <NavBar />
+      <Switch>
+        <Route path="/" exact component={HomePage} />
+        <Route path="/organs" component={OrganPage} />
+        <Route path="/animals" component={AnimalPage} />
+        <Route path="/cart" component={CartPage} />
+        <Route path="/checkout" component={CheckoutPage} />
+      </Switch>
     </div>
   );
 };
