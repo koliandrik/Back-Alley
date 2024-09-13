@@ -8,6 +8,7 @@ const GET_ANIMALS = gql`
       id
       name
       price
+      description
       image
       quantity
     }
