@@ -6,6 +6,7 @@ const GET_ORGANS = gql`
       id
       name
       price
+      description
       image
       quantity
     }
