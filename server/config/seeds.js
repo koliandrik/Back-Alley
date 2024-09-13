@@ -1,4 +1,4 @@
-const db require('./connection');
+const db = require('./connection');
 const { User, Product, Category } = require('../models');
 const cleanDB = require('./cleanDB');
 
@@ -46,15 +46,7 @@ db.once('open', async () => {
             image: 'kidney.jpg',
             category: categories[0]._id,
             price: 150000.00,
-            quantity: 1
-        },
-        {
-            name: 'Pancreas',
-            description: 'A human pancreas, freshly harvested.',
-            image: 'pancreas.jpg',
-            category: categories[0]._id,
-            price: 190000.00,
-            quantity: 1
+            quantity: 3
         },
         {
             name: 'Spleen',
@@ -82,7 +74,7 @@ db.once('open', async () => {
         },
         {
             name: 'Snowy Owl',
-            description: 'A majestic snowy owl, from the frozen Arctic.',
+            description: 'A majestic snowy owl, from the frozen Arctic. His name George.',
             image: 'owl.jpg',
             category: categories[1]._id,
             price: 5000.00,
@@ -98,19 +90,11 @@ db.once('open', async () => {
         },
         {
             name: 'Sea Turtle',
-            description: 'Beautiful sea turtles, straight from the beaches of Hawaii.',
+            description: 'Beautiful sea turtles, straight from the beaches of Hawaii. Ethically harvested.',
             image: 'turtle.jpg',
             category: categories[1]._id,
             price: 7000.00,
             quantity: 15
-        },
-        {
-            name: 'Lion',
-            description: 'A fierce lion, ready to be your new best friend.',
-            image: 'lion.jpg',
-            category: categories[1]._id,
-            price: 25000.00,
-            quantity: 1
         },
         {
             name: 'Chimpanzee',
@@ -158,7 +142,7 @@ db.once('open', async () => {
             image: 'ear.jpg',
             category: categories[2]._id,
             price: 50,
-            quantity: 1
+            quantity: 6
         },
     ]);
 

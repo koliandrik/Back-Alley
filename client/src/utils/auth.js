@@ -11,7 +11,20 @@ class AuthService {
   // return `true` or `false` if token exists (does not verify if it's expired yet)
   loggedIn() {
     const token = this.getToken();
-    return token ? true : false;
+    return !!token && !this.isTokenExpired(token);
+  }
+
+  isTokenExpired(token) {
+    try {
+      // decode token
+      const decoded = decode(token);
+      // check if token is expired
+      if (decoded.exp < Date.now() / 1000) {
+        return true;
+      } else return false;
+    } catch (err) {
+      return false;
+    }
   }
 
   getToken() {
