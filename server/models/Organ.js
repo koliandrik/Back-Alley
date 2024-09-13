@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const organSchema = new mongoose.Schema({
   name: String,
   price: String,
-  description: String,
+  quantity: String,
 });
 
 const Organ = mongoose.model('Organ', organSchema);
