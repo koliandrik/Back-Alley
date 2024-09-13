@@ -1,28 +1,27 @@
 {
-    "name": "exotic-emporium-server",
+    "name": "back-alley-server",
     "version": "1.0.0",
     "description": "Server for Exotic Emporium",
-    "main": "index.js",
+    "main": "server.js",
     "scripts": {
-      "start": "node server.js",
-      "watch": "nodemon",
-      "seed": "node seeders/seed.js"
+        "start": "node server.js",
+        "watch": "nodemon",
+        "seed": "node config/seeds.js"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "dependencies": {
         "@apollo/server": "^4.7.1",
+        "apollo-server-express": "^3.13.0",
+        "bcrypt": "^5.1.1",
         "express": "^4.17.2",
         "graphql": "^16.6.0",
+        "jsonwebtoken": "^9.0.2",
         "mongoose": "^8.0.0",
-      "apollo-server-express": "^3.13.0",
-      "bcrypt": "^5.1.1",
-      "jsonwebtoken": "^9.0.2"
-      
+        "stripe": "^16.11.0"
     },
     "devDependencies": {
         "nodemon": "^2.0.3"
-      }
     }
-  
+}

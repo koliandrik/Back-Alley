@@ -1,133 +1,139 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
-const Organ = require('../models/Organ');
-const Animal = require('../models/Animal');
-const Cart = require('../models/Cart');
-
-const SECRET_KEY = process.env.JWT_SECRET_KEY; // Ensure this key is set in your .env file
+const { Mutation } = require('../../../../GITLAB/UCB-VIRT-FSF-PT-03-2024-U-LOLC/22-State/01-Activities/26-Stu_Actions-Reducers/Solved/server/schemas/resolvers');
+const { User, Product, Category, Order } = require('../models');
+const { signToken, AuthenticationError } = require('../utils/auth');
+const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
   Query: {
-    // Fetch all organs
-    organs: async () => {
-      return await Organ.find();
+    categories: async () => {
+      return await Category.find();
     },
-    
-    // Fetch all animals
-    animals: async () => {
-      return await Animal.find();
+    products: async (parent, { category, name }) => {
+      const params = {};
+
+      if (category) {
+        params.category = category;
+      }
+
+      if (name) {
+        params.name = {
+          $regex: name
+        };
+      }
+
+      return await Product.find(params).populate('category');
     },
-    
-    // Fetch a single user by ID
-    user: async (_, { id }) => {
-      return await User.findById(id);
+    product: async (parent, { _id }) => {
+      return await Product.findById(_id).populate('category');
     },
-    
-    // Fetch all carts for a user
-    cart: async (_, { userId }) => {
-      return await Cart.findOne({ userId });
+    user: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id).populate({
+          path: 'orders.products',
+          populate: 'category'
+        });
+
+        user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
+
+        return user;
+      }
+
+      throw AuthenticationError;
     },
-    
-    // Fetch a single organ by ID
-    organ: async (_, { id }) => {
-      return await Organ.findById(id);
+    order: async (parent, { _id }, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id).populate({
+          path: 'orders.products',
+          populate: 'category'
+        });
+
+        return user.orders.id(_id);
+      }
+
+      throw AuthenticationError;
     },
-    
-    // Fetch a single animal by ID
-    animal: async (_, { id }) => {
-      return await Animal.findById(id);
+    checkout: async (parent, args, context) => {
+      const url = new URL(context.headers.referer).origin;
+      const order = new Order({ products: args.products });
+      const line_items = [];
+
+      const { products } = await order.populate('products');
+
+      for (let i = 0; i < products.length; i++) {
+        const product = await stripe.products.create({
+          name: products[i].name,
+          description: products[i].description
+        });
+
+        const price = await stripe.prices.create({
+          product: product.id,
+          unit_amount: products[i].price * 100,
+          currency: 'usd',
+        });
+
+        line_items.push({
+          price: price.id,
+          quantity: 1
+        });
+      }
+
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items,
+        mode: 'payment',
+        success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${url}/`
+      });
+
+      return { session: session.id };
     }
   },
-  
   Mutation: {
-    // User signup
-    signup: async (_, { username, email, password }) => {
-      const hashedPassword = await bcrypt.hash(password, 10);
-      const newUser = new User({ username, email, password: hashedPassword });
-      await newUser.save();
-      return newUser;
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
+      const token = signToken(user);
+
+      return { token, user };
     },
-    
-    // User login
-    login: async (_, { email, password }) => {
+    addOrder: async (parent, { products }, context) => {
+      if (context.user) {
+        const order = new Order({ products });
+
+        await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
+
+        return order;
+      }
+
+      throw AuthenticationError;
+    },
+    updateUser: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findByIdAndUpdate(context.user._id, args, { new: true });
+      }
+
+      throw AuthenticationError;
+    },
+    updateProduct: async (parent, { _id, quantity }) => {
+      const decrement = Math.abs(quantity) * -1;
+
+      return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
+    },
+    login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
+
       if (!user) {
-        throw new Error('User not found');
+        throw AuthenticationError;
       }
-      const valid = await bcrypt.compare(password, user.password);
-      if (!valid) {
-        throw new Error('Invalid password');
+
+      const correctPw = await user.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw AuthenticationError;
       }
-      const token = jwt.sign({ userId: user.id }, SECRET_KEY, { expiresIn: '1h' });
-      return { token };
-    },
-    
-    // Add an organ to the database
-    addOrgan: async (_, { name, price, imageUrl, quantity }) => {
-      const newOrgan = new Organ({ name, price, imageUrl, quantity });
-      await newOrgan.save();
-      return newOrgan;
-    },
-    
-    // Update an organ
-    updateOrgan: async (_, { id, name, price, imageUrl, quantity }) => {
-      return await Organ.findByIdAndUpdate(id, { name, price, imageUrl, quantity }, { new: true });
-    },
-    
-    // Delete an organ
-    deleteOrgan: async (_, { id }) => {
-      return await Organ.findByIdAndRemove(id);
-    },
-    
-    // Add an animal to the database
-    addAnimal: async (_, { name, price, imageUrl, quantity }) => {
-      const newAnimal = new Animal({ name, price, imageUrl, quantity });
-      await newAnimal.save();
-      return newAnimal;
-    },
-    
-    // Update an animal
-    updateAnimal: async (_, { id, name, price, imageUrl, quantity }) => {
-      return await Animal.findByIdAndUpdate(id, { name, price, imageUrl, quantity }, { new: true });
-    },
-    
-    // Delete an animal
-    deleteAnimal: async (_, { id }) => {
-      return await Animal.findByIdAndRemove(id);
-    },
-    
-    // Add an item to the cart
-    addToCart: async (_, { userId, itemId, itemType, quantity }) => {
-      let cart = await Cart.findOne({ userId });
-      if (!cart) {
-        cart = new Cart({ userId, items: [] });
-      }
-      cart.items.push({ itemId, itemType, quantity });
-      await cart.save();
-      return cart;
-    },
-    
-    // Remove an item from the cart
-    removeFromCart: async (_, { userId, itemId }) => {
-      let cart = await Cart.findOne({ userId });
-      if (!cart) {
-        throw new Error('Cart not found');
-      }
-      cart.items = cart.items.filter(item => item.itemId !== itemId);
-      await cart.save();
-      return cart;
-    },
-    
-    // Checkout and clear the cart
-    checkout: async (_, { userId }) => {
-      let cart = await Cart.findOne({ userId });
-      if (!cart) {
-        throw new Error('Cart not found');
-      }
-      // Here you would process the payment and clear the cart
-      await Cart.deleteOne({ userId });
-      return cart;
+
+      const token = signToken(user);
+
+      return { token, user };
     }
   }
 };
