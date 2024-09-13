@@ -4,6 +4,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import styled from 'styled-components';
 import axios from 'axios';
 
+
 // Load your publishable key from Stripe
 const stripePromise = loadStripe('your-publishable-key-here');
 

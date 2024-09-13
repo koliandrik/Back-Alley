@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 
+
 const GET_ANIMALS = gql`
   query GetAnimals {
     products(category: "animals") {
