@@ -13,7 +13,7 @@ const GET_ORGANS = gql`
 `;
 
 const OrganPage = () => {
-  const { data, loading, error } = useQuery(GET_ORGANS);
+  // const { data, loading, error } = useQuery(GET_ORGANS);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
