@@ -62,17 +62,46 @@ const Cart = () => {
 
     if (!state.cartOpen) {
         return (
-            <div className="cart-closed" onClick={toggleCart}>
-                <span
-                    role="img"
-                    aria-label="trash">🛒</span>
-            </div>
+            <span class="material-symbols-outlined" data-bs-toggle="offcanvas" href="#shoppingCart" role="button" aria-controls="offcanvasExample" onClick={toggleCart}>shopping_cart</span>
         );
     }
 
     return (
-        <div className="cart">
-            <div className="close" onClick={toggleCart}>
+        // <div className="offcanvas offcanvas-end" tabindex="-1" id="shoppingCart" aria-labelledby="offcanvasExampleLabel">
+        //     <div className="offcanvas-header">
+        //         <h5 className="offcanvas-title" id="offcanvasExampleLabel">Shopping Cart</h5>
+        //         <button type="button" className="btn-close text-reset" onClick={toggleCart} aria-label="Close"></button>
+        //     </div>
+        //     <div className="offcanvas-body">
+        //         {state.cart.length ? (
+        //             <div>
+        //                 {state.cart.map((item) => (
+        //                     <CartItem key={item._id} item={item} />
+        //                 ))}
+        //                 <div className="flex-row space-between">
+        //                     <strong>Total: ${calculateTotal()}</strong>
+        //                     {
+        //                         Auth.loggedIn() ? (
+        //                             <button onClick={submitCheckout}>Checkout</button>
+        //                         ) : (
+        //                             <span>(log in to check out)</span>
+        //                     )}
+        //                 </div>
+        //             </div>
+        //         ) : (
+        //             <h3>
+        //                 <span role="img" aria-label="shocked">
+        //                     😱
+        //                 </span>
+        //                 You haven't added anything to your cart yet!
+        //             </h3>
+        //         )}
+        //     </div>
+        // </div>
+
+
+        <div className="container sticky-bottom">
+            <div className="close " onClick={toggleCart}>
                 [close]
             </div>
             <h2>Shopping Cart</h2>
@@ -92,14 +121,14 @@ const Cart = () => {
                         )}
                     </div>
                 </div>
-            ) : (
-                <h3>
-                    <span role="img" aria-label="shocked">
-                        😱
-                    </span>
-                    You haven't added anything to your cart yet!
-                </h3>
-            )}
+        ) : (
+            <h3>
+                <span role="img" aria-label="shocked">
+                    😱
+                </span>
+                You haven't added anything to your cart yet!
+            </h3>
+        )}
         </div>
     );
 };
