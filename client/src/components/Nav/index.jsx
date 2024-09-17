@@ -68,13 +68,13 @@ function Nav() {
                     {showNavigation()}
 
                     <h1>
-                    <Link to="/">
-                        <span role="img" aria-label="shopping bag"></span>
-                        The Back Alley
-                    </Link>
+                        <Link to="/">
+                            <span role="img" aria-label="shopping bag"></span>
+                            The Back Alley
+                        </Link>
                     </h1>
                     
-                    <Cart />                 
+                    <Cart />
                     
                 </div>
             </nav>

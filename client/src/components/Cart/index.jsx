@@ -7,7 +7,6 @@ import CartItem from "../CartItem";
 import Auth from "../../utils/auth";
 import { useStoreContext } from "../../utils/GlobalState";
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from "../../utils/actions";
-import "./style.css";
 
 const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 
@@ -62,74 +61,91 @@ const Cart = () => {
 
     if (!state.cartOpen) {
         return (
-            <span class="material-symbols-outlined" data-bs-toggle="offcanvas" href="#shoppingCart" role="button" aria-controls="offcanvasExample" onClick={toggleCart}>shopping_cart</span>
+        <>
+            <span class="material-symbols-outlined" onClick={toggleCart} data-bs-toggle="offcanvas" data-bs-target="#shoppingCart" role="button" aria-controls="offcanvasExample">
+                shopping_cart
+            </span>
+
+            <div class="cart offcanvas offcanvas-end" tabindex="-1" id="shoppingCart" aria-labelledby="offcanvasExampleLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Shopping Cart</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+
+                <div class="offcanvas-body">
+                    {state.cart.length ? (
+                        <div>
+                            {state.cart.map((item) => (
+                                <CartItem key={item._id} item={item} />
+                            ))}
+
+                            <div class="flex-row space-between">
+                                <strong>Total: ${calculateTotal()}</strong>
+
+                                {Auth.loggedIn() ? (
+                                    <button class="btn btn-primary" onClick={submitCheckout}>
+                                        Checkout
+                                    </button>
+                                ) : (
+                                    <span>(log in to check out)</span>
+                                )}
+
+                            </div>
+                        </div>
+                    ) : (
+                        <h3>
+                            <span role="img" aria-label="shocked">
+                                😱
+                            </span>
+                            You haven't added anything to your cart yet!
+                        </h3>
+                    )}
+                </div>
+            </div></>
+
         );
     }
 
     return (
-        // <div className="offcanvas offcanvas-end" tabindex="-1" id="shoppingCart" aria-labelledby="offcanvasExampleLabel">
-        //     <div className="offcanvas-header">
-        //         <h5 className="offcanvas-title" id="offcanvasExampleLabel">Shopping Cart</h5>
-        //         <button type="button" className="btn-close text-reset" onClick={toggleCart} aria-label="Close"></button>
-        //     </div>
-        //     <div className="offcanvas-body">
-        //         {state.cart.length ? (
-        //             <div>
-        //                 {state.cart.map((item) => (
-        //                     <CartItem key={item._id} item={item} />
-        //                 ))}
-        //                 <div className="flex-row space-between">
-        //                     <strong>Total: ${calculateTotal()}</strong>
-        //                     {
-        //                         Auth.loggedIn() ? (
-        //                             <button onClick={submitCheckout}>Checkout</button>
-        //                         ) : (
-        //                             <span>(log in to check out)</span>
-        //                     )}
-        //                 </div>
-        //             </div>
-        //         ) : (
-        //             <h3>
-        //                 <span role="img" aria-label="shocked">
-        //                     😱
-        //                 </span>
-        //                 You haven't added anything to your cart yet!
-        //             </h3>
-        //         )}
-        //     </div>
-        // </div>
+        <>
+            <span class="material-symbols-outlined" onClick={toggleCart} data-bs-toggle="offcanvas" data-bs-target="#shoppingCart" role="button" aria-controls="offcanvasExample">
+                shopping_cart
+            </span>
 
-
-        <div className="container sticky-bottom">
-            <div className="close " onClick={toggleCart}>
-                [close]
-            </div>
-            <h2>Shopping Cart</h2>
-            {state.cart.length ? (
-                <div>
-                    {state.cart.map((item) => (
-                        <CartItem key={item._id} item={item} />
-                    ))}
-                    
-                    <div className="flex-row space-between">
-                        <strong>Total: ${calculateTotal()}</strong>
-                        {
-                            Auth.loggedIn() ? (
-                                <button onClick={submitCheckout}>Checkout</button>
-                            ) : (
-                                <span>(log in to check out)</span>
-                        )}
-                    </div>
+            <div class="cart offcanvas offcanvas-end" tabindex="-1" id="shoppingCart" aria-labelledby="offcanvasExampleLabel">
+                <div class="offcanvas-header">
+                    <h3 class="offcanvas-title" id="offcanvasExampleLabel">Shopping Cart</h3>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
-        ) : (
-            <h3>
-                <span role="img" aria-label="shocked">
-                    😱
-                </span>
-                You haven't added anything to your cart yet!
-            </h3>
-        )}
-        </div>
+                
+                <div class="offcanvas-body">
+                    {state.cart.length ? (
+                        <div>
+                            {state.cart.map((item) => (
+                                <CartItem key={item._id} item={item} />
+                            ))}
+
+                            <div class="flex-row space-between">
+                                <strong>Total: ${calculateTotal()}</strong>
+
+                                {Auth.loggedIn() ? (
+                                    <button class="btn btn-primary" onClick={submitCheckout}>
+                                        Checkout
+                                    </button>
+                                ) : (
+                                    <span>(log in to check out)</span>
+                                )}
+                                
+                            </div>
+                        </div>
+                    ) : (
+                        <h3>
+                            Looks like your cart is empty!
+                        </h3>
+                    )}
+                </div>
+            </div>
+        </>
     );
 };
 
