@@ -136,7 +136,7 @@ Chloe Jiang - [GitHub: yueyue426](https://github.com/yueyue426)
 
 Gio Cagliari - [GitHub: GeoMaster101](https://github.com/GeoMaster101) 
 
-Alex T - [GitHub: turriettaa](https://github.com/turriettaa)
+Alex Turrietta - [GitHub: turriettaa](https://github.com/turriettaa)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
