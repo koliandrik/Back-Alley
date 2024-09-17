@@ -37,7 +37,7 @@ const CartItem = ({ item }) => {
 
   return (
     <div className="container flex-row">
-      <div class='card'>
+      <div className="card px-1 py-1 d-flex flex-column align-items-center">
         <div>
           <img
             src={`/images/${item.image}`}

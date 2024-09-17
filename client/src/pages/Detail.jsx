@@ -27,6 +27,7 @@ function Detail() {
             const item = {
                 image: product.image,
                 name: product.name,
+                description: product.description,
                 _id: product._id,
                 price: product.price,
                 quantity: product.quantity,
@@ -87,33 +88,45 @@ function Detail() {
 
     return (
         <>
+            <div className="container my-1">
             {currentProduct ? (
                 <div className="container my-1">
+                    
                     <Link to="/">← Back to Products</Link>
+                   
+            
 
                     <h2>{currentProduct.name}</h2>
-
-                    <p>{currentProduct.description}</p>
-
-                    <p>
-                        <strong>Price:</strong>${currentProduct.price}{" "}
-                        <button onClick={addToCart}>Add to Cart</button>
-                        <button
-                            disabled={!cart.find((p) => p._id === currentProduct._id)}
-                            onClick={removeFromCart}
-                        >
-                            Remove from Cart
-                        </button>
-                    </p>
 
                     <img
                         src={`/images/${currentProduct.image}`}
                         alt={currentProduct.name}
                     />
-                </div>
+
+                    <h3>{currentProduct.description}</h3>
+
+                    <p>
+                        <strong>Price:</strong>${currentProduct.price}{" "}
+                        <a href='#'>
+                        <button onClick={addToCart}>Add to Cart</button>
+                        <div class="dripping"></div>
+                        </a>
+                        <a href='#'>
+                        <button
+                            disabled={!cart.find((p) => p._id === currentProduct._id)}
+                            onClick={removeFromCart}
+                        >
+                            
+                            Remove from Cart
+                        </button>
+                        <div class="dripping"></div>
+                        </a>
+                        
+                    </p>
+                    </div>
             ) : null}
             {loading ? <img src={spinner} alt="loading" /> : null}
-            <Cart />
+            </div>
         </>
     );
 }
