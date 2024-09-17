@@ -44,25 +44,27 @@ function ProductList() {
     }
 
     return (
-        <div className="my-2">
+        <div className="my-2 d-flex justify-content-between">
             <h2>Our Products:</h2>
-            {state.products.length ? (
-                <div className="flex-row">
-                    {filterProducts().map((product) => (
-                        <ProductItem
-                            key={product._id}
-                            _id={product._id}
-                            image={product.image}
-                            name={product.name}
-                            price={product.price}
-                            quantity={product.quantity}
-                        />
-                    ))}
+            <div>
+                {state.products.length ? (
+                    <div className="">
+                        {filterProducts().map((product) => (
+                            <ProductItem
+                                key={product._id}
+                                _id={product._id}
+                                image={product.image}
+                                name={product.name}
+                                price={product.price}
+                                quantity={product.quantity}
+                            />
+                        ))}
+                    </div>
+                ) : (
+                    <h3>No Products added yet</h3>
+                )}
+                {loading ? <img src={spinner} alt="loading" /> : null}
                 </div>
-            ) : (
-                <h3>No Products added yet</h3>
-            )}
-            {loading ? <img src={spinner} alt="loading" /> : null}
         </div>
     );
 }
