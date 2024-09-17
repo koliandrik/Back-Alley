@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom/client'
-import './index.css'
+// import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import App from './App.jsx';
@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     error: <NoMatch />,
     children: [
       {
-        index: true, 
+        index: true,
         element: <Home />
       }, {
         path: '/login',
