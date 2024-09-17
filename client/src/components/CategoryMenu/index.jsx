@@ -40,8 +40,11 @@ function CategoryMenu() {
 
     return (
         <div>
-            <h2>Choose a Category:</h2>
+             <div className="container my-4"/>
+          <h2 className="text-center mb-4">Choose a Category:</h2>
+          <div className="d-flex justify-content-center flex-wrap">
             {categories.map((item) => (
+                <a href="#">
                 <button
                     key={item._id}
                     onClick={() => {
@@ -50,7 +53,10 @@ function CategoryMenu() {
                 >
                     {item.name}
                 </button>
+                <div class="dripping"></div>
+                </a>
             ))}
+        </div>
         </div>
     );
 }

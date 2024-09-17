@@ -1,1 +1,36 @@
 @import "bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Nosifer&display=swap');
+
+
+  
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(180deg,#000000 0%, #D84D54 100%, );
+  }
+  
+  a {
+    position: relative;
+    padding: 20px 50px;
+    display: block;
+    text-decoration: none;
+    overflow: hidden;
+  }
+  
+  a button{
+    font-family: 'Nosifer', cursive;
+    font-size: 1.5em;
+    color: #000000;
+    background: #C3464C;
+    border-radius: 50px;
+    width: 383px;
+    letter-spacing: 0.2em;
+    padding: 1em;
+    border-style: none;
+  }
+  
+  button:hover{
+    cursor: pointer;
+  }
