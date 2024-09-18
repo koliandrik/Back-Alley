@@ -68,16 +68,20 @@
 
 ## Project Description
 
-* The site will allow users make an account and search for Items to buy.
-* The site will allow users to add items to their shopping cart.
-* TBD
+ The site will allow users to find nech items that they are looking for. We atempt to make the site as user friendly as possible. Aswell as allowing users to add items to their cart.
+ The items are ethicly sorced from truseted buyers.
+ 
 
 
 ### Built With
 
 * [![Node.js][Nodejs.org]][Node-url]
 * [![Express.js][Expressjs.com]][Express-url]
-* [![Render][Render.com]][Render-url]
+* [![Vitejs][vitejs.dev]][vite-url]
+* [![Bootstrap][bootstrap.org]][bootstrap-url]
+* [![React][reactjs.org]][react-url]
+* [![Graphql][graphql.org]][graphql-url]
+
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -91,18 +95,14 @@ This website was built and tested using Chromium based browsers <a href="https:/
 
 
 
-### Installation
-
-* TBD
-
 
 <!-- USAGE EXAMPLES -->
 
 ## Usage
 
-When visiting the application  the user is presented with a _____-page, and is prompted .
+When visiting the application  the user is presented with a Store-page, and is prompted to search for an item.
 
-Enter a query into the search box, then click the 'search' button.
+Choose a category that interests you and you will be presented with a vority of items. you be able to add an item to your cart.
 
 ```
 * AS a 
@@ -150,7 +150,8 @@ Alex Turrietta - [GitHub: turriettaa](https://github.com/turriettaa)
 
 * Thanks to [Clarence Cheung](https://github.com/kleranscoding) and [Mariah Wear](https://github.com/mariahw4) for TA support!
 
-
+<p align="center"><b>Thank you for reading!</b></p>
+<p align="center"><b>This project was made for educational purposes only</b></p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -172,5 +173,11 @@ Alex Turrietta - [GitHub: turriettaa](https://github.com/turriettaa)
 [Node-url]: https://nodejs.org/en/
 [Expressjs.com]: https://img.shields.io/badge/Expressjs-000000?style=for-the-badge&logo=express&logoColor=white
 [Express-url]: https://expressjs.com/
-[Render.com]: https://img.shields.io/badge/Render-000000?style=for-the-badge&logo=render&logoColor=white
-[Render-url]: https://render.com/
+[bootstrap.org]: https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white
+[bootstrap-url]: https://getbootstrap.com/
+[reactjs.org]: https://img.shields.io/badge/Reactjs-61DAFB?style=for-the-badge&logo=react&logoColor=white
+[react-url]: https://reactjs.org/
+[Graphql.org]: https://img.shields.io/badge/graphql-E10098?style=for-the-badge&logo=graphql&logoColor=white
+[graphql-url]: https://graphql.org/
+[vitejs.dev]: https://img.shields.io/badge/vite-646CFF?style=for-the-badge&logo=vite&logoColor=white
+[vite-url]: https://vitejs.dev/
