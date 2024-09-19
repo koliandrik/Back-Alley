@@ -61,19 +61,19 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![Product Name Screen Shot](assets/demo.png)
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<!-- <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
-## Project Description
+<!-- ## Project Description -->
 
  The site will allow users to find nech items that they are looking for. We atempt to make the site as user friendly as possible. Aswell as allowing users to add items to their cart.
  The items are ethicly sorced from truseted buyers.
  
 
 
-### Built With
+### Technologies
 
 * [![Node.js][Nodejs.org]][Node-url]
 * [![Express.js][Expressjs.com]][Express-url]
@@ -94,8 +94,6 @@
 This website was built and tested using Chromium based browsers <a href="https://www.opera.com/gx">Opera GX</a> and <a href="(https://www.google.com/chrome/">Google Chrome</a> on a <a href="https://www.microsoft.com/en-us/software-download/windows10%20">Windows 10</a> machine, but should be viewable on any HTML supported browser.
 
 
-
-
 <!-- USAGE EXAMPLES -->
 
 ## Usage
@@ -104,20 +102,14 @@ When visiting the application  the user is presented with a Store-page, and is p
 
 Choose a category that interests you and you will be presented with a vority of items. you be able to add an item to your cart.
 
-```
-* AS a 
-* AS a 
-* AS an app user
-  
-```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <!-- LICENSE -->
-## License
-
-TBD. See `LICENSE.txt` for more information.
+## License ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+ 
+ This project is licensed under the [MIT](https://opensource.org/licenses/MIT) License.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -128,15 +120,15 @@ TBD. See `LICENSE.txt` for more information.
 
 Project Link: [https://github.com/koliandrik/Final-Project](https://github.com/koliandrik/Final-Project)
 
-Mykola Nastyn - [GitHub: koliandrik](https://github.com/koliandrik)
+- Mykola Nastyn - [GitHub: koliandrik](https://github.com/koliandrik)
 
-Hunter Mitchell - [GitHub: jhmitchell10](https://github.com/jhmitchell10)
+- Hunter Mitchell - [GitHub: jhmitchell10](https://github.com/jhmitchell10)
 
-Chloe Jiang - [GitHub: yueyue426](https://github.com/yueyue426)
+- Chloe Jiang - [GitHub: yueyue426](https://github.com/yueyue426)
 
-Gio Cagliari - [GitHub: GeoMaster101](https://github.com/GeoMaster101) 
+- Gio Cagliari - [GitHub: GeoMaster101](https://github.com/GeoMaster101) 
 
-Alex Turrietta - [GitHub: turriettaa](https://github.com/turriettaa)
+- Alex Turrietta - [GitHub: turriettaa](https://github.com/turriettaa)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -146,9 +138,10 @@ Alex Turrietta - [GitHub: turriettaa](https://github.com/turriettaa)
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* Thanks to [Mark Carlson](https://github.com/mark-carlson) for instructor support!
+Thanks to [Mark Carlson](https://github.com/mark-carlson) for instructor support!
 
-* Thanks to [Clarence Cheung](https://github.com/kleranscoding) and [Mariah Wear](https://github.com/mariahw4) for TA support!
+Thanks to [Clarence Cheung](https://github.com/kleranscoding) and [Mariah Wear](https://github.com/mariahw4) for TA support!
+<br><br/>
 
 <p align="center"><b>Thank you for reading!</b></p>
 <p align="center"><b>This project was made for educational purposes only</b></p>
