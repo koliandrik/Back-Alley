@@ -41,13 +41,16 @@ function ProductItem(item) {
     return (
         <div className="card px-1 py-1 d-flex flex-column align-items-center">
             <Link to={`/products/${_id}`}>
+
+                <h3>{name}</h3>
+                
                 <img
                     alt={name}
                     src={`/images/${image}`}
                     class="img-fluid"
                 />
                 
-                <p>{name}</p>
+                
             </Link>
             <div>
                 <div>{quantity} {pluralize("item", quantity)} in stock</div>
