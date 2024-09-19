@@ -13,13 +13,13 @@ function Nav() {
                         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
-                        <ul className="flex-row">
-                            <li className="mx-1">
+                        <ul className=" list-group list-group-flush">
+                            <li className="list-group-item mx-1">
                                 <Link to="/orderHistory">
                                 Order History
                                 </Link>
                             </li>
-                            <li className="mx-1">
+                            <li className="list-group-item mx-1">
                                 {/* this is not using the Link component to logout or user and then refresh the application to the start */}
                                 <a href="/" onClick={() => Auth.logout()}>
                                 Logout
@@ -37,13 +37,13 @@ function Nav() {
                         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
-                        <ul className="flex-row">
-                            <li className="mx-1" data-bs-dismiss="offcanvas">
+                        <ul className="list-group list-group-flush">
+                            <li className="list-group-item mx-1" data-bs-dismiss="offcanvas">
                                 <Link to="/signup">
                                 Signup
                                 </Link>
                             </li>
-                            <li className="mx-1" data-bs-dismiss="offcanvas">
+                            <li className="list-group-item mx-1" data-bs-dismiss="offcanvas">
                                 <Link to="/login">
                                 Login
                                 </Link>

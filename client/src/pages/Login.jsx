@@ -30,7 +30,7 @@ function Login(props) {
     };
 
     return (
-        <div className="container my-1">
+        <div className="container my-1 text-center">
             <Link to="/signup">← Go to Signup</Link>
 
             <h2>Login</h2>
@@ -39,6 +39,7 @@ function Login(props) {
                     <label htmlFor="email">Email address:</label>
                     <input
                         placeholder="email@domain.net"
+                        class="form-control"
                         name="email"
                         type="email"
                         id="email"
@@ -49,6 +50,7 @@ function Login(props) {
                     <label htmlFor="pwd">Password:</label>
                     <input
                         placeholder="password"
+                        class="form-control"
                         name="password"
                         type="password"
                         id="pwd"
@@ -61,7 +63,10 @@ function Login(props) {
                     </div>
                 ) : null}
                 <div className="flex-row flex-end">
-                    <button type="submit">Submit</button>
+                    <a href="#">
+                        <button type="submit">Submit</button>
+                        <div class="dripping"></div>
+                    </a>
                 </div>
             </form>
         </div>
